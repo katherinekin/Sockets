@@ -1,5 +1,7 @@
 # Ignore all to ignore compiled targets without extensions
 *
+# Except for makefile
+!make*
 
 # Unignore all with extensions
 !*.*
@@ -41,6 +43,3 @@
 *.exe
 *.out
 *.app
-
-# makeFile
-make*
