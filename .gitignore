@@ -1,3 +1,14 @@
+# Ignore all to ignore compiled targets without extensions
+*
+
+# Unignore all with extensions
+!*.*
+
+# Unignore all dirs
+!*/
+
+# Begin ignore for specified extensions
+
 # Prerequisites
 *.d
 
@@ -30,3 +41,6 @@
 *.exe
 *.out
 *.app
+
+# makeFile
+make*
