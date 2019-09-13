@@ -1,21 +1,10 @@
 # Sockets
 
-This exercise looks
+This exercise utilizes sockets to send an encoded message between child processes.
 
-Sender.cpp
-For each line read, forks a child process
-Each child creates a socket to connect to the server
-First set the port number and socket file descripter
+Encoder acts as a server that receives messages from each child process, to be passed along to another child process. A single encoded signal is produced from all of the message values and child process using Walsh code. After all messages have been received and the signal is created, Encoder sends the signal back to each of the child processes, with the corresponding child process number needed to decode the message.
 
-Encoder.cpp
-Encoder acts as the server
-Creates a socket to receive messages from sender
-store the child socket fd in the container client_socket
-store the destination in the container dest_order
-As each message is received from sender, encodes the messages was a key based on the child number using walsh code
-After all messages are received, sends the messages to intended child based on file descriptor
-
-Once sender receives the encoded message, it will decode it based on which child sent the message
+Sender reads an input file containing the message to be sent, and the child process the message should be sent to. As each line is read, the parent process forks a child process that then creates a socket to communicate with Encoder, and then writes the message to the Encoder's socket. The child process then waits for a response from Encoder, which will send the signal and key back to the child. Once the child process receives the encoded message, it will decode it based on the key.
 
 Directions:
 1. Run `make` in the `src/` directory to compile sender.cpp and encoder.cpp and any dependencies
